@@ -1,0 +1,17 @@
+{
+  "name": "We Didn't Start the Fire",
+  "short_name": "Oh Billy",
+  "description": "Interactive timeline of Billy Joel's 'We Didn't Start the Fire'",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#1a1a2e",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%231a1a2e'/><text x='256' y='350' font-size='280' text-anchor='middle' fill='%23ffd700'>🔥</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

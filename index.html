@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>We Didn't Start the Fire</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="timeline.css">
+</head>
+<body>
+    <button id="back-btn" class="back-button" title="Previous">
+        <i class="ti ti-arrow-left"></i>
+    </button>
+    
+    <button id="reset-btn" class="reset-button" title="Reset to start">
+        <i class="ti ti-rotate-clockwise"></i>
+    </button>
+    
+    <main class="timeline-container">
+        <div id="events-container"></div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+    </main>
+    
+    <script src="timeline.js"></script>
+</body>
+</html>
