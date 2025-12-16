@@ -88,14 +88,25 @@ function updateProgress() {
     const progress = (currentIndex / (allCards.length - 1)) * 100;
     progressFill.style.width = progress + '%';
     
-    // Hide progress bar on intro slide (index 0)
+    // Hide progress bar and buttons on intro slide (index 0)
     const progressBar = document.querySelector('.progress-bar');
+    const backBtn = document.getElementById('back-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    
     if (currentIndex === 0) {
         progressBar.style.opacity = '0';
         progressBar.style.pointerEvents = 'none';
+        backBtn.style.opacity = '0';
+        backBtn.style.pointerEvents = 'none';
+        resetBtn.style.opacity = '0';
+        resetBtn.style.pointerEvents = 'none';
     } else {
         progressBar.style.opacity = '1';
         progressBar.style.pointerEvents = 'auto';
+        backBtn.style.opacity = '1';
+        backBtn.style.pointerEvents = 'auto';
+        resetBtn.style.opacity = '1';
+        resetBtn.style.pointerEvents = 'auto';
     }
 }
 
