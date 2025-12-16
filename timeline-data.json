@@ -60,7 +60,7 @@
     },
     {
         "name": "North Korea, South Korea",
-        "icon": "ti ti-alphabet-korean",
+        "icon": "ti ti-flag",
         "description": "Korean War, 1950-1953"
     },
     {
@@ -517,12 +517,12 @@
     },
     {
         "name": "Punk Rock",
-        "icon": "ti ti-hand-love-you",
+        "icon": "ti ti-guitar-pick",
         "description": "Music movement emerged"
     },
     {
         "name": "Begin",
-        "icon": "ti ti-star-of-david",
+        "icon": "ti ti-star",
         "description": "Menachem Begin, Israeli PM"
     },
     {
