@@ -126,7 +126,7 @@ const timeline = [
     { name: "Reagan", icon: "ti ti-movie", description: "Ronald Reagan elected president, 1980" },
     { name: "Palestine", icon: "ti ti-home-x", description: "Middle East conflict" },
     { name: "Terror on the Airline", icon: "ti ti-plane", description: "Hijackings and terrorism" },
-    { name: "Ayatollahs in Iran", icon: "ti ti-star-crescent", description: "Iranian Revolution, 1979" },
+    { name: "Ayatollahs in Iran", icon: "ti ti-building-mosque", description: "Iranian Revolution, 1979" },
     { name: "Russians in Afghanistan", icon: "ti ti-tank", description: "Soviet invasion, 1979" },
     { name: "Wheel of Fortune", icon: "ti ti-device-tv", description: "Popular game show" },
     { name: "Sally Ride", icon: "ti ti-rocket", description: "First American woman in space, 1983" },
