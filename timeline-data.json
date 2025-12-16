@@ -60,7 +60,7 @@
     },
     {
         "name": "North Korea, South Korea",
-        "icon": "ti ti-flag",
+        "icon": "ti ti-alphabet-korean",
         "description": "Korean War, 1950-1953"
     },
     {
@@ -70,7 +70,7 @@
     },
     {
         "name": "Rosenbergs",
-        "icon": "ti ti-lock",
+        "icon": "ti ti-spy",
         "description": "Executed for espionage in 1953"
     },
     {
@@ -148,7 +148,7 @@
     },
     {
         "name": "Nasser",
-        "icon": "ti ti-droplet",
+        "icon": "ti ti-gas-station",
         "description": "Egyptian leader, nationalized Suez Canal"
     },
     {
@@ -218,12 +218,12 @@
     },
     {
         "name": "Davy Crockett",
-        "icon": "ti ti-star",
+        "icon": "ti ti-mountain",
         "description": "Disney TV series phenomenon"
     },
     {
         "name": "Peter Pan",
-        "icon": "ti ti-device-tv",
+        "icon": "ti ti-sparkles",
         "description": "TV musical broadcast, 1955"
     },
     {
@@ -281,7 +281,7 @@
     },
     {
         "name": "Pasternak",
-        "icon": "ti ti-heart",
+        "icon": "ti ti-radioactive",
         "description": "Boris Pasternak, Doctor Zhivago author"
     },
     {
@@ -492,7 +492,7 @@
     },
     {
         "name": "Ho Chi Minh",
-        "icon": "ti ti-helmet",
+        "icon": "ti ti-flag",
         "description": "North Vietnamese leader"
     },
     {
@@ -517,12 +517,12 @@
     },
     {
         "name": "Punk Rock",
-        "icon": "ti ti-guitar-pick",
+        "icon": "ti ti-hand-love-you",
         "description": "Music movement emerged"
     },
     {
         "name": "Begin",
-        "icon": "ti ti-hand-stop",
+        "icon": "ti ti-star-of-david",
         "description": "Menachem Begin, Israeli PM"
     },
     {
@@ -562,12 +562,12 @@
     },
     {
         "name": "Heavy Metal Suicide",
-        "icon": "ti ti-music",
+        "icon": "ti ti-skull",
         "description": "Judas Priest trial controversy"
     },
     {
         "name": "Foreign Debts",
-        "icon": "ti ti-cash",
+        "icon": "ti ti-chart-histogram",
         "description": "Global economic crisis"
     },
     {
