@@ -1,147 +1,19 @@
-// Timeline Events - "We Didn't Start the Fire" by Billy Joel
-// All events with fire breaks at chorus points
+// Timeline Events - loaded from external JSON file
+let timeline = [];
+let timelineLoaded = false;
 
-const timeline = [
-    // Verse 1
-    { name: "Harry Truman", icon: "ti ti-atom-2", description: "33rd President of the United States, 1945-1953" },
-    { name: "Doris Day", icon: "ti ti-microphone-2", description: "American actress and singer, Hollywood star of the 1950s" },
-    { name: "Red China", icon: "ti ti-yin-yang-filled", description: "Communist Party took control in 1949" },
-    { name: "Johnnie Ray", icon: "ti ti-microphone", description: "American singer known for 'Cry' in the early 1950s" },
-    { name: "South Pacific", icon: "ti ti-theater", description: "Rodgers and Hammerstein musical, 1949" },
-    { name: "Walter Winchell", icon: "ti ti-news", description: "Influential newspaper and radio commentator" },
-    { name: "Joe DiMaggio", icon: "ti ti-ball-baseball", description: "Yankees center fielder, 56-game hitting streak" },
-    { name: "Joe McCarthy", icon: "ti ti-gavel", description: "Senator who led anti-communist investigations" },
-    { name: "Richard Nixon", icon: "ti ti-zoom-question", description: "Vice President under Eisenhower" },
-    { name: "Studebaker", icon: "ti ti-car", description: "American automobile manufacturer" },
-    { name: "Television", icon: "ti ti-device-tv", description: "Mass adoption in American homes, 1950s" },
-    { name: "North Korea, South Korea", icon: "ti ti-flag", description: "Korean War, 1950-1953" },
-    { name: "Marilyn Monroe", icon: "ti ti-star", description: "Iconic actress and model of the 1950s" },
-    
-    // Verse 2
-    { name: "Rosenbergs", icon: "ti ti-lock", description: "Executed for espionage in 1953" },
-    { name: "H-Bomb", icon: "ti ti-bomb", description: "Hydrogen bomb tested by U.S. in 1952" },
-    { name: "Sugar Ray", icon: "ti ti-trophy", description: "Sugar Ray Robinson, legendary boxer" },
-    { name: "Panmunjom", icon: "ti ti-writing-sign", description: "Korean Armistice Agreement signed, 1953" },
-    { name: "Brando", icon: "ti ti-mask", description: "Marlon Brando revolutionized acting" },
-    { name: "The King and I", icon: "ti ti-crown", description: "Rodgers and Hammerstein musical, 1951" },
-    { name: "The Catcher in the Rye", icon: "ti ti-book-2", description: "J.D. Salinger novel, 1951" },
-    { name: "Eisenhower", icon: "ti ti-military-rank", description: "34th President, 1953-1961" },
-    { name: "Vaccine", icon: "ti ti-pill", description: "Jonas Salk's polio vaccine, 1955" },
-    { name: "England's Got a New Queen", icon: "ti ti-crown", description: "Queen Elizabeth II, 1952" },
-    { name: "Marciano", icon: "ti ti-trophy", description: "Rocky Marciano, undefeated heavyweight champion" },
-    { name: "Liberace", icon: "ti ti-piano", description: "Flamboyant pianist and entertainer" },
-    { name: "Santayana Goodbye", icon: "ti ti-grave-2", description: "Philosopher George Santayana died, 1952" },
-    
-    { type: "fire-break" },
-    
-    // Verse 3
-    { name: "Joseph Stalin", icon: "ti ti-user-x", description: "Soviet dictator died in 1953" },
-    { name: "Malenkov", icon: "ti ti-building-fortress", description: "Succeeded Stalin briefly as Soviet Premier" },
-    { name: "Nasser", icon: "ti ti-droplet", description: "Egyptian leader, nationalized Suez Canal" },
-    { name: "Prokofiev", icon: "ti ti-music", description: "Russian composer died in 1953" },
-    { name: "Rockefeller", icon: "ti ti-building-bank", description: "Nelson Rockefeller, Governor of New York" },
-    { name: "Campanella", icon: "ti ti-ball-baseball", description: "Roy Campanella, Brooklyn Dodgers catcher" },
-    { name: "Communist Bloc", icon: "ti ti-shield-lock", description: "Soviet-aligned Eastern European nations" },
-    { name: "Roy Cohn", icon: "ti ti-gavel", description: "McCarthy's chief counsel" },
-    { name: "Juan Peron", icon: "ti ti-users", description: "Argentine president" },
-    { name: "Toscanini", icon: "ti ti-music", description: "Arturo Toscanini, renowned conductor" },
-    { name: "Dacron", icon: "ti ti-shirt", description: "Synthetic fiber introduced in 1950s" },
-    { name: "Dien Bien Phu Falls", icon: "ti ti-parachute", description: "French defeat in Vietnam, 1954" },
-    { name: "Rock Around the Clock", icon: "ti ti-guitar-pick", description: "Bill Haley hit, birth of rock and roll" },
-    { name: "Einstein", icon: "ti ti-atom", description: "Albert Einstein died in 1955" },
-    { name: "James Dean", icon: "ti ti-car-crash", description: "Actor died in car crash, 1955" },
-    { name: "Brooklyn's Got a Winning Team", icon: "ti ti-trophy", description: "Dodgers won World Series, 1955" },
-    { name: "Davy Crockett", icon: "ti ti-star", description: "Disney TV series phenomenon" },
-    { name: "Peter Pan", icon: "ti ti-device-tv", description: "TV musical broadcast, 1955" },
-    { name: "Elvis Presley", icon: "ti ti-microphone", description: "King of Rock and Roll emerged" },
-    { name: "Disneyland", icon: "ti ti-map-pin", description: "Theme park opened in 1955" },
-    { name: "Bardot", icon: "ti ti-heart", description: "Brigitte Bardot, French actress" },
-    { name: "Budapest", icon: "ti ti-flame", description: "Hungarian Revolution crushed, 1956" },
-    { name: "Alabama", icon: "ti ti-bus", description: "Montgomery Bus Boycott" },
-    { name: "Khrushchev", icon: "ti ti-shoe", description: "Soviet Premier" },
-    { name: "Princess Grace", icon: "ti ti-crown", description: "Grace Kelly married Prince of Monaco" },
-    { name: "Peyton Place", icon: "ti ti-heart-broken", description: "Controversial bestselling novel" },
-    { name: "Trouble in the Suez", icon: "ti ti-ship", description: "Suez Crisis, 1956" },
-    
-    { type: "fire-break" },
-    
-    // Verse 4
-    { name: "Little Rock", icon: "ti ti-school", description: "School desegregation crisis, 1957" },
-    { name: "Pasternak", icon: "ti ti-heart", description: "Boris Pasternak, Doctor Zhivago author" },
-    { name: "Mickey Mantle", icon: "ti ti-ball-baseball", description: "Yankees baseball legend" },
-    { name: "Kerouac", icon: "ti ti-route", description: "Jack Kerouac, On the Road" },
-    { name: "Sputnik", icon: "ti ti-rocket", description: "Soviet satellite, 1957" },
-    { name: "Zhou En-lai", icon: "ti ti-yin-yang-filled", description: "Chinese Premier" },
-    { name: "Bridge On The River Kwai", icon: "ti ti-building-bridge", description: "Oscar-winning film, 1957" },
-    { name: "Lebanon", icon: "ti ti-building-mosque", description: "U.S. troops sent to Lebanon, 1958" },
-    { name: "Charles de Gaulle", icon: "ti ti-military-rank", description: "President of France" },
-    { name: "California Baseball", icon: "ti ti-ball-baseball", description: "Dodgers and Giants moved west" },
-    { name: "Starkweather Homicide", icon: "ti ti-skull", description: "Charles Starkweather murder spree" },
-    { name: "Children of Thalidomide", icon: "ti ti-pill", description: "Drug caused birth defects" },
-    { name: "Buddy Holly", icon: "ti ti-microphone", description: "Rock pioneer died in plane crash, 1959" },
-    { name: "Ben-Hur", icon: "ti ti-horse", description: "Epic film won 11 Oscars" },
-    { name: "Space Monkey", icon: "ti ti-rocket", description: "Animals sent to space" },
-    { name: "Mafia", icon: "ti ti-users", description: "Organized crime investigations" },
-    { name: "Hula Hoops", icon: "ti ti-circle-dotted", description: "Toy fad craze" },
-    { name: "Castro", icon: "ti ti-smoking", description: "Fidel Castro took power in Cuba" },
-    { name: "Edsel is a No-Go", icon: "ti ti-car", description: "Ford's failed automobile" },
-    { name: "U-2", icon: "ti ti-plane", description: "Spy plane incident, 1960" },
-    { name: "Syngman Rhee", icon: "ti ti-building-community", description: "South Korean president" },
-    { name: "Payola", icon: "ti ti-cash", description: "Radio bribery scandal" },
-    { name: "Kennedy", icon: "ti ti-flag-3", description: "JFK elected president, 1960" },
-    { name: "Chubby Checker", icon: "ti ti-rotate-clockwise-2", description: "The Twist dance craze" },
-    { name: "Psycho", icon: "ti ti-blade", description: "Hitchcock thriller" },
-    { name: "Belgians in the Congo", icon: "ti ti-diamond", description: "Congo independence crisis" },
-    
-    { type: "fire-break" },
-    
-    // Verse 5
-    { name: "Hemingway", icon: "ti ti-fish", description: "Ernest Hemingway died, 1961" },
-    { name: "Eichmann", icon: "ti ti-gavel", description: "Nazi war criminal trial" },
-    { name: "Stranger in a Strange Land", icon: "ti ti-alien", description: "Robert Heinlein sci-fi novel" },
-    { name: "Dylan", icon: "ti ti-microphone", description: "Bob Dylan emerged" },
-    { name: "Berlin", icon: "ti ti-wall", description: "Berlin Wall built, 1961" },
-    { name: "Bay of Pigs Invasion", icon: "ti ti-parachute", description: "Failed Cuba invasion, 1961" },
-    { name: "Lawrence of Arabia", icon: "ti ti-sun", description: "Epic film" },
-    { name: "British Beatlemania", icon: "ti ti-vinyl", description: "The Beatles phenomenon" },
-    { name: "Ole Miss", icon: "ti ti-school", description: "University integration riot, 1962" },
-    { name: "John Glenn", icon: "ti ti-rocket", description: "First American to orbit Earth" },
-    { name: "Liston Beats Patterson", icon: "ti ti-trophy", description: "Boxing heavyweight championship" },
-    { name: "Pope Paul", icon: "ti ti-crown", description: "Pope Paul VI elected, 1963" },
-    { name: "Malcolm X", icon: "ti ti-sunglasses", description: "Civil rights leader" },
-    { name: "British Politician Sex", icon: "ti ti-hearts", description: "Profumo scandal" },
-    { name: "J.F.K. Blown Away", icon: "ti ti-user-x", description: "President Kennedy assassinated, 1963" },
-    
-    { type: "fire-break" },
-    
-    // Verse 6
-    { name: "Birth Control", icon: "ti ti-pill", description: "Contraceptive pill widely available" },
-    { name: "Ho Chi Minh", icon: "ti ti-helmet", description: "North Vietnamese leader" },
-    { name: "Richard Nixon Back Again", icon: "ti ti-user-check", description: "Elected president, 1968" },
-    { name: "Moonshot", icon: "ti ti-rocket", description: "Apollo 11 moon landing, 1969" },
-    { name: "Woodstock", icon: "ti ti-music", description: "Music festival, 1969" },
-    { name: "Watergate", icon: "ti ti-lock", description: "Political scandal, Nixon resignation" },
-    { name: "Punk Rock", icon: "ti ti-guitar-pick", description: "Music movement emerged" },
-    { name: "Begin", icon: "ti ti-hand-stop", description: "Menachem Begin, Israeli PM" },
-    { name: "Reagan", icon: "ti ti-movie", description: "Ronald Reagan elected president, 1980" },
-    { name: "Palestine", icon: "ti ti-home-x", description: "Middle East conflict" },
-    { name: "Terror on the Airline", icon: "ti ti-plane", description: "Hijackings and terrorism" },
-    { name: "Ayatollahs in Iran", icon: "ti ti-building-mosque", description: "Iranian Revolution, 1979" },
-    { name: "Russians in Afghanistan", icon: "ti ti-tank", description: "Soviet invasion, 1979" },
-    { name: "Wheel of Fortune", icon: "ti ti-device-tv", description: "Popular game show" },
-    { name: "Sally Ride", icon: "ti ti-rocket", description: "First American woman in space, 1983" },
-    { name: "Heavy Metal Suicide", icon: "ti ti-music", description: "Judas Priest trial controversy" },
-    { name: "Foreign Debts", icon: "ti ti-cash", description: "Global economic crisis" },
-    { name: "Homeless Vets", icon: "ti ti-home-off", description: "Vietnam veterans crisis" },
-    { name: "AIDS", icon: "ti ti-virus", description: "Epidemic emerged in 1980s" },
-    { name: "Crack", icon: "ti ti-pill", description: "Cocaine epidemic" },
-    { name: "Bernie Goetz", icon: "ti ti-train", description: "Subway vigilante shooting" },
-    { name: "Hypodermics on the Shores", icon: "ti ti-vaccine", description: "Medical waste washed up on beaches" },
-    { name: "China's Under Martial Law", icon: "ti ti-shield-x", description: "Tiananmen Square protests, 1989" },
-    { name: "Rock and Roller Cola Wars", icon: "ti ti-bottle", description: "Pepsi vs Coke marketing battles" },
-    
-    { type: "fire-break" }
-];
+// Load timeline data
+async function loadTimelineData() {
+    try {
+        const cacheBust = new URLSearchParams(window.location.search).get('v') || Date.now();
+        const response = await fetch(`timeline-data.json?v=${cacheBust}`);
+        timeline = await response.json();
+        timelineLoaded = true;
+        initializeTimeline();
+    } catch (error) {
+        console.error('Failed to load timeline data:', error);
+    }
+}
 
 let currentIndex = 0;
 let allCards = [];
@@ -568,22 +440,27 @@ progressBar.addEventListener('touchend', (e) => {
     jumpToIndex(targetIndex);
 });
 
-// Initialize
-createAllCards();
+// Initialize timeline after data loads
+function initializeTimeline() {
+    createAllCards();
 
-// Check if there's an index query parameter
-const startIndex = getQueryParam('index');
-if (startIndex !== null) {
-    const index = parseInt(startIndex);
-    if (!isNaN(index) && index >= 0 && index < allCards.length) {
-        currentIndex = index;
-        showCard(index);
+    // Check if there's an index query parameter
+    const startIndex = getQueryParam('index');
+    if (startIndex !== null) {
+        const index = parseInt(startIndex);
+        if (!isNaN(index) && index >= 0 && index < allCards.length) {
+            currentIndex = index;
+            showCard(index);
+        } else {
+            showCard(0);
+        }
     } else {
         showCard(0);
     }
-} else {
-    showCard(0);
 }
+
+// Load timeline data on page load
+loadTimelineData();
 
 // Register service worker for PWA
 if ('serviceWorker' in navigator) {
