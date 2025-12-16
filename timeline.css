@@ -102,6 +102,16 @@ body {
     }
 }
 
+.intro-card .event-icon {
+    font-size: 32rem;
+}
+
+@media (max-width: 768px) {
+    .intro-card .event-icon {
+        font-size: 20rem;
+    }
+}
+
 .fire-break .event-icon {
     font-size: 32rem;
     animation: flicker 1.5s infinite;
@@ -142,6 +152,8 @@ body {
     padding: 48px 0;
     margin: -48px 0;
     box-sizing: content-box;
+    opacity: 1;
+    transition: opacity 0.3s ease;
 }
 
 .progress-bar::before {

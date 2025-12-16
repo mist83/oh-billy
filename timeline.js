@@ -23,7 +23,15 @@ const progressFill = document.getElementById('progress-fill');
 // Create all cards
 function createAllCards() {
     timeline.forEach((item) => {
-        if (item.type === 'fire-break') {
+        if (item.type === 'intro') {
+            const intro = document.createElement('div');
+            intro.className = 'event-card intro-card';
+            intro.innerHTML = `
+                <div class="event-icon"><i class="${item.icon}"></i></div>
+            `;
+            container.appendChild(intro);
+            allCards.push(intro);
+        } else if (item.type === 'fire-break') {
             const fireBreak = document.createElement('div');
             fireBreak.className = 'event-card fire-break';
             fireBreak.innerHTML = `
@@ -79,6 +87,16 @@ function hideCardRight(index) {
 function updateProgress() {
     const progress = (currentIndex / (allCards.length - 1)) * 100;
     progressFill.style.width = progress + '%';
+    
+    // Hide progress bar on intro slide (index 0)
+    const progressBar = document.querySelector('.progress-bar');
+    if (currentIndex === 0) {
+        progressBar.style.opacity = '0';
+        progressBar.style.pointerEvents = 'none';
+    } else {
+        progressBar.style.opacity = '1';
+        progressBar.style.pointerEvents = 'auto';
+    }
 }
 
 // Navigate forward (always advances, but direction can be specified)

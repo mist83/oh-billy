@@ -1,5 +1,9 @@
 [
     {
+        "type": "intro",
+        "icon": "ti ti-mickey"
+    },
+    {
         "name": "Harry Truman",
         "icon": "ti ti-atom-2",
         "description": "33rd President of the United States, 1945-1953"
