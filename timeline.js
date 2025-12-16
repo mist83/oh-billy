@@ -88,12 +88,15 @@ function updateProgress() {
     const progress = (currentIndex / (allCards.length - 1)) * 100;
     progressFill.style.width = progress + '%';
     
-    // Hide progress bar and buttons on intro slide (index 0)
+    // Hide progress bar and buttons on intro slide (index 0) or fire breaks
     const progressBar = document.querySelector('.progress-bar');
     const backBtn = document.getElementById('back-btn');
     const resetBtn = document.getElementById('reset-btn');
     
-    if (currentIndex === 0) {
+    const currentItem = timeline[currentIndex];
+    const isIntroOrFireBreak = currentIndex === 0 || (currentItem && (currentItem.type === 'fire-break' || currentItem.type === 'intro'));
+    
+    if (isIntroOrFireBreak) {
         progressBar.style.opacity = '0';
         progressBar.style.pointerEvents = 'none';
         backBtn.style.opacity = '0';
