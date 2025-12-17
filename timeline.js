@@ -184,32 +184,32 @@ function previousEvent(direction = null) {
     
     switch(direction) {
         case 'left':
-            // Current card slides left, previous comes from right
-            prevCard.style.transform = 'translateX(100vw)';
+            // Previous comes FROM the left, current exits to right
+            prevCard.style.transform = 'translateX(-100vw)';
             void prevCard.offsetWidth;
             prevCard.style.transition = '';
-            currentCard.style.transform = 'translateX(-100vw)';
+            currentCard.style.transform = 'translateX(100vw)';
             break;
         case 'top':
-            // Current card slides up, previous comes from bottom
-            prevCard.style.transform = 'translateY(100vh)';
-            void prevCard.offsetWidth;
-            prevCard.style.transition = '';
-            currentCard.style.transform = 'translateY(-100vh)';
-            break;
-        case 'bottom':
-            // Current card slides down, previous comes from top
+            // Previous comes FROM the top, current exits to bottom
             prevCard.style.transform = 'translateY(-100vh)';
             void prevCard.offsetWidth;
             prevCard.style.transition = '';
             currentCard.style.transform = 'translateY(100vh)';
             break;
-        default: // 'right'
-            // Current card slides right, previous comes from left
-            prevCard.style.transform = 'translateX(-100vw)';
+        case 'bottom':
+            // Previous comes FROM the bottom, current exits to top
+            prevCard.style.transform = 'translateY(100vh)';
             void prevCard.offsetWidth;
             prevCard.style.transition = '';
-            currentCard.style.transform = 'translateX(100vw)';
+            currentCard.style.transform = 'translateY(-100vh)';
+            break;
+        default: // 'right'
+            // Previous comes FROM the right, current exits to left
+            prevCard.style.transform = 'translateX(100vw)';
+            void prevCard.offsetWidth;
+            prevCard.style.transition = '';
+            currentCard.style.transform = 'translateX(-100vw)';
             break;
     }
     
@@ -338,11 +338,11 @@ document.addEventListener('keydown', (e) => {
             break;
         case 'ArrowLeft':
             e.preventDefault();
-            previousEvent('left'); // Current slides left, previous comes from right
+            previousEvent('left'); // Previous comes from left
             break;
         case 'ArrowUp':
             e.preventDefault();
-            previousEvent('top'); // Current slides up, previous comes from bottom
+            previousEvent('top'); // Previous comes from top
             break;
         case 'ArrowDown':
             e.preventDefault();
@@ -417,10 +417,10 @@ function handleSwipe() {
         // Horizontal swipe
         if (Math.abs(deltaX) > minSwipeDistance) {
             if (deltaX > 0) {
-                // Swiped right - current slides right, previous from left
-                previousEvent('right');
+                // Swiped right - previous comes from left
+                previousEvent('left');
             } else {
-                // Swiped left - current slides left, next from right
+                // Swiped left - next comes from right
                 nextEvent('right');
             }
         }
@@ -428,10 +428,10 @@ function handleSwipe() {
         // Vertical swipe
         if (Math.abs(deltaY) > minSwipeDistance) {
             if (deltaY > 0) {
-                // Swiped down - current slides down, previous from top
-                previousEvent('bottom');
+                // Swiped down - previous comes from top
+                previousEvent('top');
             } else {
-                // Swiped up - current slides up, next from bottom
+                // Swiped up - next comes from bottom
                 nextEvent('bottom');
             }
         }
