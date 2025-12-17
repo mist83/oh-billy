@@ -88,9 +88,8 @@ function updateProgress() {
     const progress = (currentIndex / (allCards.length - 1)) * 100;
     progressFill.style.width = progress + '%';
     
-    // Hide progress bar and buttons on intro slide (index 0) or fire breaks
+    // Hide progress bar and reset button on intro slide (index 0) or fire breaks
     const progressBar = document.querySelector('.progress-bar');
-    const backBtn = document.getElementById('back-btn');
     const resetBtn = document.getElementById('reset-btn');
     
     const currentItem = timeline[currentIndex];
@@ -99,15 +98,11 @@ function updateProgress() {
     if (isIntroOrFireBreak) {
         progressBar.style.opacity = '0';
         progressBar.style.pointerEvents = 'none';
-        backBtn.style.opacity = '0';
-        backBtn.style.pointerEvents = 'none';
         resetBtn.style.opacity = '0';
         resetBtn.style.pointerEvents = 'none';
     } else {
         progressBar.style.opacity = '1';
         progressBar.style.pointerEvents = 'auto';
-        backBtn.style.opacity = '1';
-        backBtn.style.pointerEvents = 'auto';
         resetBtn.style.opacity = '1';
         resetBtn.style.pointerEvents = 'auto';
     }
@@ -314,11 +309,11 @@ document.addEventListener('keydown', (e) => {
             break;
         case 'ArrowLeft':
             e.preventDefault();
-            nextEvent('left'); // Next card, slide from left
+            previousEvent(); // Go back in sequence
             break;
         case 'ArrowUp':
             e.preventDefault();
-            nextEvent('top'); // Next card, slide from top
+            previousEvent(); // Go back in sequence
             break;
         case 'ArrowDown':
             e.preventDefault();
@@ -393,8 +388,8 @@ function handleSwipe() {
         // Horizontal swipe
         if (Math.abs(deltaX) > minSwipeDistance) {
             if (deltaX > 0) {
-                // Swiped right - next card slides from left
-                nextEvent('left');
+                // Swiped right - go back in sequence
+                previousEvent();
             } else {
                 // Swiped left - next card slides from right
                 nextEvent('right');
@@ -404,8 +399,8 @@ function handleSwipe() {
         // Vertical swipe
         if (Math.abs(deltaY) > minSwipeDistance) {
             if (deltaY > 0) {
-                // Swiped down - next card slides from top
-                nextEvent('top');
+                // Swiped down - go back in sequence
+                previousEvent();
             } else {
                 // Swiped up - next card slides from bottom
                 nextEvent('bottom');
@@ -413,11 +408,6 @@ function handleSwipe() {
         }
     }
 }
-
-// Back button functionality
-document.getElementById('back-btn').addEventListener('click', () => {
-    previousEvent(); // Previous card, random direction
-});
 
 // Reset button functionality
 document.getElementById('reset-btn').addEventListener('click', () => {

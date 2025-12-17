@@ -188,32 +188,10 @@ body {
     50% { opacity: 0.6; }
 }
 
-.back-button {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    background: none;
-    border: none;
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 100;
-    transition: all 0.2s ease, opacity 0.3s ease;
-    -webkit-tap-highlight-color: transparent;
-    padding: 0;
-    opacity: 1;
-}
-
-.back-button:hover,
-.back-button:active {
-    color: #ffd700;
-    transform: scale(1.2);
-}
-
 .reset-button {
     position: fixed;
     top: 20px;
-    right: 20px;
+    left: 20px;
     background: none;
     border: none;
     color: rgba(255, 255, 255, 0.3);
