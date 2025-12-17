@@ -161,8 +161,8 @@ function nextEvent(direction = 'right') {
     showCard(currentIndex);
 }
 
-// Navigate backward (with random direction)
-function previousEvent() {
+// Navigate backward (with optional direction, defaults to random)
+function previousEvent(direction = null) {
     const prevIndex = currentIndex;
     
     // Decrease index
@@ -176,34 +176,40 @@ function previousEvent() {
     prevCard.classList.remove('at-center', 'off-left');
     prevCard.style.transition = 'none';
     
-    // Random direction for backward navigation
-    const directions = ['right', 'left', 'top', 'bottom'];
-    const randomDirection = directions[Math.floor(Math.random() * directions.length)];
+    // Use specified direction or random
+    if (!direction) {
+        const directions = ['right', 'left', 'top', 'bottom'];
+        direction = directions[Math.floor(Math.random() * directions.length)];
+    }
     
-    switch(randomDirection) {
+    switch(direction) {
         case 'left':
-            prevCard.style.transform = 'translateX(-100vw)';
+            // Current card slides left, previous comes from right
+            prevCard.style.transform = 'translateX(100vw)';
             void prevCard.offsetWidth;
             prevCard.style.transition = '';
-            currentCard.style.transform = 'translateX(100vw)';
+            currentCard.style.transform = 'translateX(-100vw)';
             break;
         case 'top':
-            prevCard.style.transform = 'translateY(-100vh)';
-            void prevCard.offsetWidth;
-            prevCard.style.transition = '';
-            currentCard.style.transform = 'translateY(100vh)';
-            break;
-        case 'bottom':
+            // Current card slides up, previous comes from bottom
             prevCard.style.transform = 'translateY(100vh)';
             void prevCard.offsetWidth;
             prevCard.style.transition = '';
             currentCard.style.transform = 'translateY(-100vh)';
             break;
-        default: // 'right'
-            prevCard.style.transform = 'translateX(100vw)';
+        case 'bottom':
+            // Current card slides down, previous comes from top
+            prevCard.style.transform = 'translateY(-100vh)';
             void prevCard.offsetWidth;
             prevCard.style.transition = '';
-            currentCard.style.transform = 'translateX(-100vw)';
+            currentCard.style.transform = 'translateY(100vh)';
+            break;
+        default: // 'right'
+            // Current card slides right, previous comes from left
+            prevCard.style.transform = 'translateX(-100vw)';
+            void prevCard.offsetWidth;
+            prevCard.style.transition = '';
+            currentCard.style.transform = 'translateX(100vw)';
             break;
     }
     
@@ -328,15 +334,15 @@ document.addEventListener('keydown', (e) => {
             break;
         case 'ArrowRight':
             e.preventDefault();
-            nextEvent('right'); // Next card, slide from right
+            nextEvent('right'); // Current slides left, next comes from right
             break;
         case 'ArrowLeft':
             e.preventDefault();
-            previousEvent(); // Go back in sequence
+            previousEvent('left'); // Current slides left, previous comes from right
             break;
         case 'ArrowUp':
             e.preventDefault();
-            previousEvent(); // Go back in sequence
+            previousEvent('top'); // Current slides up, previous comes from bottom
             break;
         case 'ArrowDown':
             e.preventDefault();
@@ -411,10 +417,10 @@ function handleSwipe() {
         // Horizontal swipe
         if (Math.abs(deltaX) > minSwipeDistance) {
             if (deltaX > 0) {
-                // Swiped right - go back in sequence
-                previousEvent();
+                // Swiped right - current slides right, previous from left
+                previousEvent('right');
             } else {
-                // Swiped left - next card slides from right
+                // Swiped left - current slides left, next from right
                 nextEvent('right');
             }
         }
@@ -422,10 +428,10 @@ function handleSwipe() {
         // Vertical swipe
         if (Math.abs(deltaY) > minSwipeDistance) {
             if (deltaY > 0) {
-                // Swiped down - go back in sequence
-                previousEvent();
+                // Swiped down - current slides down, previous from top
+                previousEvent('bottom');
             } else {
-                // Swiped up - next card slides from bottom
+                // Swiped up - current slides up, next from bottom
                 nextEvent('bottom');
             }
         }
