@@ -32,10 +32,48 @@ body {
     height: 100dvh;
     overflow: hidden;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: #ffffff;
+    background: var(--bg-gradient);
+    color: var(--text-color);
     touch-action: pan-x pan-y;
     position: relative;
+    transition: background 0.5s ease, color 0.3s ease;
+}
+
+/* Color Palette Variables */
+body[data-palette="0"] {
+    --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    --text-color: #ffffff;
+    --accent-color: #ffd700;
+}
+
+body[data-palette="1"] {
+    --bg-gradient: linear-gradient(135deg, #2d1b4e 0%, #1a0d2e 100%);
+    --text-color: #e8e6f0;
+    --accent-color: #a78bfa;
+}
+
+body[data-palette="2"] {
+    --bg-gradient: linear-gradient(135deg, #1a2e1a 0%, #0d1f0d 100%);
+    --text-color: #e8f0e8;
+    --accent-color: #7dd3c0;
+}
+
+body[data-palette="3"] {
+    --bg-gradient: linear-gradient(135deg, #2e1a1a 0%, #1f0d0d 100%);
+    --text-color: #f0e8e8;
+    --accent-color: #ff9d76;
+}
+
+body[data-palette="4"] {
+    --bg-gradient: linear-gradient(135deg, #1e2936 0%, #11171f 100%);
+    --text-color: #e2e8f0;
+    --accent-color: #60a5fa;
+}
+
+body[data-palette="5"] {
+    --bg-gradient: linear-gradient(135deg, #2a1e2e 0%, #1a0e1f 100%);
+    --text-color: #f0e8ee;
+    --accent-color: #f4a4b4;
 }
 
 .timeline-container {
@@ -92,8 +130,9 @@ body {
 .event-icon {
     font-size: 16rem;
     margin: 1.5rem 0;
-    color: #ffd700;
+    color: var(--accent-color);
     text-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+    transition: color 0.3s ease;
 }
 
 @media (max-width: 768px) {
@@ -126,12 +165,14 @@ body {
 .event-description {
     font-size: 1.5rem;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--text-color);
+    opacity: 0.85;
     margin-top: 1.5rem;
     max-width: 90%;
     margin-left: auto;
     margin-right: auto;
     padding: 0 1rem;
+    transition: color 0.3s ease;
 }
 
 @media (max-width: 768px) {
@@ -170,13 +211,33 @@ body {
 
 .progress-fill {
     height: 8px;
-    background: #ffd700;
+    background: var(--accent-color);
     width: 0%;
-    transition: width 0.3s ease;
+    transition: width 0.3s ease, background 0.3s ease;
     box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
     border-radius: 4px;
     position: relative;
     z-index: 1;
+}
+
+.progress-tooltip {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.9);
+    color: var(--accent-color);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    pointer-events: none;
+    z-index: 1000;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    border: 1px solid var(--accent-color);
+}
+
+.progress-tooltip.visible {
+    opacity: 1;
 }
 
 .end-card .event-icon {
@@ -194,18 +255,19 @@ body {
     left: 20px;
     background: none;
     border: none;
-    color: rgba(255, 255, 255, 0.3);
+    color: var(--text-color);
+    opacity: 0.3;
     font-size: 24px;
     cursor: pointer;
     z-index: 100;
-    transition: all 0.2s ease, opacity 0.3s ease;
+    transition: all 0.2s ease, color 0.3s ease;
     -webkit-tap-highlight-color: transparent;
     padding: 0;
-    opacity: 1;
 }
 
 .reset-button:hover,
 .reset-button:active {
-    color: #ffd700;
+    color: var(--accent-color);
+    opacity: 1;
     transform: scale(1.2);
 }

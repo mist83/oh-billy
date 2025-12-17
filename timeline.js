@@ -17,8 +17,13 @@ async function loadTimelineData() {
 
 let currentIndex = 0;
 let allCards = [];
+let currentPalette = 0;
+const totalPalettes = 6;
 const container = document.getElementById('events-container');
 const progressFill = document.getElementById('progress-fill');
+
+// Initialize palette
+document.body.setAttribute('data-palette', '0');
 
 // Create all cards
 function createAllCards() {
@@ -291,9 +296,27 @@ function jumpToEnd() {
     showCard(currentIndex);
 }
 
+// Palette cycling
+function cyclePalette(direction) {
+    if (direction === 'forward') {
+        currentPalette = (currentPalette + 1) % totalPalettes;
+    } else {
+        currentPalette = (currentPalette - 1 + totalPalettes) % totalPalettes;
+    }
+    document.body.setAttribute('data-palette', currentPalette.toString());
+}
+
 // Keyboard navigation
 document.addEventListener('keydown', (e) => {
     switch(e.key) {
+        case 'PageUp':
+            e.preventDefault();
+            cyclePalette('forward');
+            break;
+        case 'PageDown':
+            e.preventDefault();
+            cyclePalette('backward');
+            break;
         case ' ':
         case 'Spacebar':
         case 'Enter':
@@ -442,8 +465,49 @@ document.addEventListener('gesturestart', (e) => {
     e.preventDefault();
 });
 
-// Progress bar scrubber
+// Progress bar scrubber and tooltip
 const progressBar = document.querySelector('.progress-bar');
+let tooltip = null;
+
+function createTooltip() {
+    tooltip = document.createElement('div');
+    tooltip.className = 'progress-tooltip';
+    document.body.appendChild(tooltip);
+}
+
+function showTooltip(x, y, index) {
+    if (!tooltip) createTooltip();
+    
+    if (index >= 0 && index < timeline.length) {
+        const item = timeline[index];
+        const name = item.name || '';
+        
+        if (name) {
+            tooltip.textContent = name;
+            tooltip.style.left = x + 'px';
+            tooltip.style.top = (y - 40) + 'px';
+            tooltip.classList.add('visible');
+        }
+    }
+}
+
+function hideTooltip() {
+    if (tooltip) {
+        tooltip.classList.remove('visible');
+    }
+}
+
+progressBar.addEventListener('mousemove', (e) => {
+    const rect = progressBar.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const percentage = mouseX / rect.width;
+    const targetIndex = Math.round(percentage * (allCards.length - 1));
+    showTooltip(e.clientX, e.clientY, targetIndex);
+});
+
+progressBar.addEventListener('mouseleave', () => {
+    hideTooltip();
+});
 
 progressBar.addEventListener('click', (e) => {
     const rect = progressBar.getBoundingClientRect();
