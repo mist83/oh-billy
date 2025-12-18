@@ -104,10 +104,12 @@ body[data-palette="5"] {
     transform: translateX(100vw);
     transition: transform 0.2s ease-out;
     z-index: 1;
+    visibility: hidden;
 }
 
 .event-card.at-center {
     transform: translateX(0);
+    visibility: visible;
 }
 
 .event-card.off-left {
@@ -270,4 +272,10 @@ body[data-palette="5"] {
     color: var(--accent-color);
     opacity: 1;
     transform: scale(1.2);
+}
+
+@media (min-width: 769px) {
+    .reset-button {
+        display: none;
+    }
 }

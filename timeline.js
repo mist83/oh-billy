@@ -366,6 +366,12 @@ document.addEventListener('keydown', (e) => {
             e.preventDefault();
             jumpToStart(true); // Reset with random direction
             break;
+        case '5':
+            e.preventDefault();
+            // Reload page with cache-busting timestamp
+            const timestamp = Date.now();
+            window.location.href = window.location.pathname + '?v=' + timestamp;
+            break;
     }
 });
 
