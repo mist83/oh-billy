@@ -67,6 +67,7 @@ function showCard(index) {
     card.style.transform = 'translateX(0)';
     
     updateProgress();
+    updateQRVisibility();
 }
 
 // Hide card (slide off left)
@@ -302,6 +303,40 @@ function jumpToEnd() {
     showCard(currentIndex);
 }
 
+// QR Code generation
+let qrCodeInstance = null;
+
+function generateQRCode() {
+    const container = document.getElementById('qr-code');
+    if (!container) return;
+    
+    // Clear existing QR code
+    container.innerHTML = '';
+    
+    // Generate new QR code with black on white
+    qrCodeInstance = new QRCode(container, {
+        text: "https://www.youtube.com/watch?v=eFTLKWw542g",
+        width: 100,
+        height: 100,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.M
+    });
+}
+
+// Show/hide QR code based on current slide
+function updateQRVisibility() {
+    const container = document.getElementById('qr-code');
+    if (!container) return;
+    
+    // Only show on intro screen (index 0)
+    if (currentIndex === 0) {
+        container.classList.add('visible');
+    } else {
+        container.classList.remove('visible');
+    }
+}
+
 // Palette cycling
 function cyclePalette(direction) {
     if (direction === 'forward') {
@@ -310,6 +345,9 @@ function cyclePalette(direction) {
         currentPalette = (currentPalette - 1 + totalPalettes) % totalPalettes;
     }
     document.body.setAttribute('data-palette', currentPalette.toString());
+    
+    // Regenerate QR code with new colors
+    setTimeout(generateQRCode, 100);
 }
 
 // Keyboard navigation
@@ -559,6 +597,9 @@ function initializeTimeline() {
 
 // Load timeline data on page load
 loadTimelineData();
+
+// Generate initial QR code
+setTimeout(generateQRCode, 500);
 
 // Register service worker for PWA
 if ('serviceWorker' in navigator) {
