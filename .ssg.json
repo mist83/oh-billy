@@ -1,0 +1,7 @@
+{
+  "id": "oh-billy",
+  "label": "Oh Billy",
+  "icon": "ti ti-mood-smile",
+  "description": "Interactive web application",
+  "htmlSource": "index.html"
+}
